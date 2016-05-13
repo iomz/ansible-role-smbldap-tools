@@ -1,0 +1,4 @@
+---
+- include: ldap.yml
+- include: smbldap-tools.yml
+

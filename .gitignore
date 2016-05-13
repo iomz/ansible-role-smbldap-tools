@@ -1,0 +1,8 @@
+site.retry
+*.tgz
+*.bak
+backup/root/*
+roles/firewalld
+tmp/*
+vars/main.yml
+defaults/main.yml

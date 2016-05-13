@@ -1,0 +1,16 @@
+---
+- name: Check local SID for the server
+  shell: net getlocalsid | awk 'NF{print $NF}'
+  register: sid
+  changed_when: false
+
+- name: Set the proper local SID unless set
+  shell: echo "This is right after ldap_signal"
+  when: sid.stdout != "{{ local_sid }}"
+
+- name: Copy smbldap config
+  template: src=smbldap.conf.j2 dest=/etc/smbldap-tools/smbldap.conf owner=root group=root mode=0644
+
+- name: Copy smbldap bind config
+  template: src=smbldap_bind.conf.j2 dest=/etc/smbldap-tools/smbldap_bind.conf owner=root group=root mode=0600
+

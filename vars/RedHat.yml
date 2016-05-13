@@ -1,0 +1,6 @@
+---
+ldap_pkg_list:
+    - openldap-clients
+    - nss-pam-ldapd
+    - smbldap-tools
+
