@@ -5,12 +5,16 @@
   changed_when: false
 
 - name: Set the proper local SID unless already set
-  shell: net setlocalsid "{{ smbldap.local_sid }}"
-  when: sid.stdout != "{{ smbldap.local_sid }}"
+  shell: net setlocalsid "{{ smbldap[0].local_sid }}"
+  when: sid.stdout != "{{ smbldap[0].local_sid }}"
 
-- name: Copy smbldap config
+- name: Build and copy smbldap config
   template: src=smbldap.conf.j2 dest=/etc/smbldap-tools/smbldap.conf owner=root group=root mode=0644
+  notify:
+    - restart smb
 
-- name: Copy smbldap bind config
+- name: Build and copy smbldap_bind config
   template: src=smbldap_bind.conf.j2 dest=/etc/smbldap-tools/smbldap_bind.conf owner=root group=root mode=0600
+  notify:
+    - restart smb
 

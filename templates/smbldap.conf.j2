@@ -33,12 +33,12 @@
 
 # Put your own SID. To obtain this number do: "net getlocalsid".
 # If not defined, parameter is taking from "net getlocalsid" return
-SID="{{ smbldap.local_sid }}"
+SID="{{ smbldap[0].local_sid }}"
 
 # Domain name the Samba server is in charged.
 # If not defined, parameter is taking from smb.conf configuration file
 # Ex: sambaDomain="IDEALX-NT"
-sambaDomain="{{ smbldap.sambaDomain }}"
+sambaDomain="{{ smbldap[0].sambaDomain }}"
 
 ##############################################################################
 #
@@ -57,20 +57,20 @@ sambaDomain="{{ smbldap.sambaDomain }}"
 # Slave LDAP server
 # Ex: slaveLDAP=127.0.0.1
 # If not defined, parameter is set to "127.0.0.1"
-#slaveLDAP="{{ smbldap_slaveLDAP }}"
+slaveLDAP="{{ smbldap[0].slaveLDAP }}"
 
 # Slave LDAP port
 # If not defined, parameter is set to "389"
-#slavePort="{{ smbldap_slavePort }}"
+slavePort="{{ smbldap[0].slavePort }}"
 
 # Master LDAP server: needed for write operations
 # Ex: masterLDAP=127.0.0.1
 # If not defined, parameter is set to "127.0.0.1"
-masterLDAP="{{ smbldap.masterLDAP }}"
+masterLDAP="{{ smbldap[0].masterLDAP }}"
 
 # Master LDAP port
 # If not defined, parameter is set to "389"
-masterPort="{{ smbldap.masterPort }}"
+masterPort="{{ smbldap[0].masterPort }}"
 
 # Use TLS for LDAP
 # If set to 1, this option will use start_tls for connection
@@ -102,22 +102,22 @@ masterPort="{{ smbldap.masterPort }}"
 
 # LDAP Suffix
 # Ex: suffix=dc=IDEALX,dc=ORG
-suffix="{{ smbldap.suffix }}"
+suffix="{{ smbldap[0].suffix }}"
 
 # Where are stored Users
 # Ex: usersdn="ou=Users,dc=IDEALX,dc=ORG"
 # Warning: if 'suffix' is not set here, you must set the full dn for usersdn
-usersdn="{{ smbldap.usersdn }}"
+usersdn="{{ smbldap[0].usersdn }}"
 
 # Where are stored Computers
 # Ex: computersdn="ou=Computers,dc=IDEALX,dc=ORG"
 # Warning: if 'suffix' is not set here, you must set the full dn for computersdn
-computersdn="{{ smbldap.computersdn }}"
+computersdn="{{ smbldap[0].computersdn }}"
 
 # Where are stored Groups
 # Ex: groupsdn="ou=Groups,dc=IDEALX,dc=ORG"
 # Warning: if 'suffix' is not set here, you must set the full dn for groupsdn
-groupsdn="{{ smbldap.groupsdn }}"
+groupsdn="{{ smbldap[0].groupsdn }}"
 
 # Where are stored Idmap entries (used if samba is a domain member server)
 # Ex: idmapdn="ou=Idmap,dc=IDEALX,dc=ORG"
@@ -128,13 +128,13 @@ groupsdn="{{ smbldap.groupsdn }}"
 # If not defined, entries are stored in sambaDomainName object.
 # Ex: sambaUnixIdPooldn="sambaDomainName=${sambaDomain},${suffix}"
 # Ex: sambaUnixIdPooldn="cn=NextFreeUnixId,${suffix}"
-sambaUnixIdPooldn="{{ smbldap.sambaUnixIdPooldn }}"
+sambaUnixIdPooldn="{{ smbldap[0].sambaUnixIdPooldn }}"
 
 # Default scope Used
-scope="{{ smbldap.sub }}"
+scope="{{ smbldap[0].scope }}"
 
 # Unix password encryption (CRYPT, MD5, SMD5, SSHA, SHA, CLEARTEXT)
-hash_encrypt="{{ smbldap.hash_encrypt }}"
+hash_encrypt="{{ smbldap[0].hash_encrypt }}"
 
 # if hash_encrypt is set to CRYPT, you may set a salt format.
 # default is "%s", but many systems will generate MD5 hashed
@@ -150,32 +150,32 @@ hash_encrypt="{{ smbldap.hash_encrypt }}"
 # Login defs
 # Default Login Shell
 # Ex: userLoginShell="/bin/bash"
-userLoginShell="{{ smbldap.userLoginShell }}"
+userLoginShell="{{ smbldap[0].userLoginShell }}"
 
 # Home directory
 # Ex: userHome="/home/%U"
 #userHome="/home/%U"
-userHome="{{ smbldap.userHome }}"
+userHome="{{ smbldap[0].userHome }}"
 
 # Default mode used for user homeDirectory
-userHomeDirectoryMode="{{ smbldap.userHomeDirectoryMode }}"
+userHomeDirectoryMode="{{ smbldap[0].userHomeDirectoryMode }}"
 
 # Gecos
-userGecos="{{ smbldap.userGecos }}"
+userGecos="{{ smbldap[0].userGecos }}"
 
 # Default User (POSIX and Samba) GID
-defaultUserGid="{{ smbldap.defaultUserGid }}"
+defaultUserGid="{{ smbldap[0].defaultUserGid }}"
 
 # Default Computer (Samba) GID
-defaultComputerGid="{{ smbldap.defaultComputerGid }}"
+defaultComputerGid="{{ smbldap[0].defaultComputerGid }}"
 
 # Skel dir
-skeletonDir="{{ smbldap.skeletonDir }}"
+skeletonDir="{{ smbldap[0].skeletonDir }}"
 
 # Default password validation time (time in days) Comment the next line if
 # you don't want password to be enable for defaultMaxPasswordAge days (be
 # careful to the sambaPwdMustChange attribute's value)
-defaultMaxPasswordAge="{{ smbldap.defaultMaxPasswordAge }}"
+defaultMaxPasswordAge="{{ smbldap[0].defaultMaxPasswordAge }}"
 
 ##############################################################################
 #
@@ -210,7 +210,7 @@ defaultMaxPasswordAge="{{ smbldap.defaultMaxPasswordAge }}"
 # when smbldap-useradd -M is used
 # Ex: mailDomain="idealx.com"
 #mailDomain="example.com"
-mailDomain="{{ smbldap.mailDomain }}"
+mailDomain="{{ smbldap[0].mailDomain }}"
 
 ##############################################################################
 #

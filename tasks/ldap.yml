@@ -1,2 +1,5 @@
 ---
 
+- name: Build and copy pam_ldap config
+  template: src=pam_ldap.conf.j2 dest=/etc/pam_ldap.conf owner=root group=root mode=0644
+

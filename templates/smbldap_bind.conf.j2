@@ -6,6 +6,6 @@
 # By default, we will use the same DN (so it will work for standard Samba
 # release)
 
-masterDN="{{ smbldap_master_dn }}"
-masterPw="{{ smbldap_master_pw }}"
+masterDN="{{ smbldap[0].master_dn }}"
+masterPw="{{ smbldap[0].master_pw }}"
 
