@@ -1,4 +1,19 @@
 ---
+- name: Add the OS specific variables
+  include_vars: '{{ ansible_os_family }}.yml'
+  tags: [ 'configuration', 'package', 'service', 'ldap' ]
+
+- name: Install the required packages in Redhat derivatives
+  yum: name={{ item }} state={{ ldap_pkg_state }}
+  with_items: "{{ ldap_pkg_list }}"
+  when: ansible_os_family == 'RedHat'
+  tags: [ 'package', 'ldap' ]
+
+- name: Install the required packages in Debian derivatives
+  apt: name=ldap state={{ ldap_pkg_state }}
+  when: ansible_os_family == 'Debian'
+  tags: [ 'package', 'ldap' ]
+
 - include: ldap.yml
 - include: smbldap-tools.yml
 

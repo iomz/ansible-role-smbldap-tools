@@ -4,9 +4,9 @@
   register: sid
   changed_when: false
 
-- name: Set the proper local SID unless set
-  shell: echo "This is right after ldap_signal"
-  when: sid.stdout != "{{ local_sid }}"
+- name: Set the proper local SID unless already set
+  shell: net setlocalsid "{{ smbldap.local_sid }}"
+  when: sid.stdout != "{{ smbldap.local_sid }}"
 
 - name: Copy smbldap config
   template: src=smbldap.conf.j2 dest=/etc/smbldap-tools/smbldap.conf owner=root group=root mode=0644
